@@ -69,7 +69,7 @@ function Product() {
   
     <div className='bg-dark' style={{display:"flex",flexWrap:"wrap", justifyContent:"center"}}>
     {item.map((x)=>(
-    <div className="card" style={{width:"19rem" , margin:"1rem",backgroundColor:"transparent",border:"1px solid seagreen"}}>
+    <div className="card" key={x.id} style={{width:"19rem" , margin:"1rem",backgroundColor:"transparent",border:"1px solid seagreen"}}>
     <img style={{width:"10rem",height:"10rem",borderRadius:"50%",border:"1px solid seagreen",objectFit:"cover",marginLeft:"auto",marginRight:"auto"}} src={x.image} className="card-img-top" alt=""/>
     <div className="card-body">
       <h5 className="card-title text-success">{x.title}</h5>
