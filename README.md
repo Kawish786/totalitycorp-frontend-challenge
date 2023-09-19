@@ -1,3 +1,27 @@
+E-commerce website.
+I have used the React JS functional component, Bootstrap, Lucide icons, and React-router-dom and React hooks like- useContext for data routing, useParams, useEffect, and useState in this project, and I have made components like a Cover Page having Navbar, Product page where I listed the product using fetch API on the product I have made a button to check about the product by making key item = id.
+On the single product page, there is a button "Add to Cart" which navigates to the cart item.
+In the cart we have a button to increase and decrease the quantity, as quantity increases or decreases the price will also vary, I have made the state to handle the increase and decrease button and then made 1 more state that can handle the subtotal according to the quantity.
+As I am a fresher React Js Developer, I have completed this project and I have learned so many things by completing this project.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
