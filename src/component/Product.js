@@ -6,44 +6,52 @@ import { Link } from 'react-router-dom';
 function Product() {
     const context = useContext(ProductContext);
     const {data} = context;
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");  /**        Search and Filter States */
     const [men,setMen]=useState('Men')
     const [women,setWomen]=useState('Women')
     const [gold,setGold]=useState('gold')
 
 
-    const [item,setItem]=useState(data)
+    const [filteredData, setFilteredData] = useState(data);
+    //  Search input 
     const handleSearch=(event)=>{
-        setSearchQuery(event.target.value)
+      const query = event.target.value.toLowerCase()
+        setSearchQuery(query)
+        if (query === "") {
+          setFilteredData(data); // Reset to original data when the query is empty
+        } else {
+          const filtered = data.filter((e) =>
+            e.title.toLowerCase().includes(query)
+          );
+          setFilteredData(filtered);
+        }
       }
+      //men filter
       const handleMenChange=(event)=>{
         setMen(event.target.value)
       }
+      const handleMen=(event)=>{
+        event.preventDefault()
+        const menFiltered=data.filter((e)=>e.title.toLowerCase().includes(men.toLowerCase()));
+        setFilteredData(menFiltered) 
+      }
+      //women filter
       const handleWomenChange=(event)=>{
         setWomen(event.target.value)
       }
+      const handleWomen=(event)=>{
+        event.preventDefault()
+        const womenFiltered=data.filter((e)=>e.title.toLowerCase().includes(women.toLowerCase()));
+        setFilteredData(womenFiltered) 
+      }
+      //gold filter
       const handleGoldChange=(event)=>{
         setGold(event.target.value)
       }
-      const handleClick=(event)=>{
-        event.preventDefault()
-        const filtered=item.filter((e)=>e.title.toLowerCase().includes(searchQuery.toLowerCase()));
-        setItem(filtered) 
-      }
-      const handleMen=(event)=>{
-        event.preventDefault()
-        const menFiltered=item.filter((e)=>e.title.toLowerCase().includes(men.toLowerCase()));
-        setItem(menFiltered) 
-      }
-      const handleWomen=(event)=>{
-        event.preventDefault()
-        const womenFiltered=item.filter((e)=>e.title.toLowerCase().includes(women.toLowerCase()));
-        setItem(womenFiltered) 
-      }
       const handleGold=(event)=>{
         event.preventDefault()
-        const goldFiltered=item.filter((e)=>e.title.toLowerCase().includes(gold.toLowerCase()));
-        setItem(goldFiltered) 
+        const goldFiltered=data.filter((e)=>e.title.toLowerCase().includes(gold.toLowerCase()));
+        setFilteredData(goldFiltered) 
       }
 
 
@@ -54,21 +62,20 @@ function Product() {
     <div className="container">
     <header className="d-flex justify-content-center py-3">
       <ul className="nav nav-pills">
-        <li className="nav-item"><label onChange={handleMenChange}  className="nav-link" value={men} onClick={handleMen}>Men</label></li>
-        <li className="nav-item"><label onChange={handleWomenChange} value={women} className="nav-link" onClick={handleWomen}>Women</label></li>
-        <li className="nav-item"><label onChange={handleGoldChange} value={gold} className="nav-link" onClick={handleGold}>Gold</label></li>
+        <li className="nav-item"><label onChange={handleMenChange}   value={men}   className="btn btn-success" style={{margin:"5px"}} onClick={handleMen}>Men</label></li>
+        <li className="nav-item"><label onChange={handleWomenChange} value={women} className="btn btn-success" style={{margin:"5px"}} onClick={handleWomen}>Women</label></li>
+        <li className="nav-item"><label onChange={handleGoldChange}  value={gold}  className="btn btn-success" style={{margin:"5px"}} onClick={handleGold}>Gold</label></li>
 
         
       </ul>
       <form className="d-flex" role="search">
-        <input className="form-control me-2" onChange={handleSearch} value={searchQuery} type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" onClick={handleClick}  type="submit">Search</button>
+        <input className="form-control me-2" style={{marginLeft:"5px"}} onChange={handleSearch} value={searchQuery} type="search" placeholder="Search" aria-label="Search"/>
       </form>
     </header>
   </div>
   
     <div className='bg-dark' style={{display:"flex",flexWrap:"wrap", justifyContent:"center"}}>
-    {item.map((x)=>(
+    {filteredData.map((x)=>(
     <div className="card" key={x.id} style={{width:"19rem" , margin:"1rem",backgroundColor:"transparent",border:"1px solid seagreen"}}>
     <img style={{width:"10rem",height:"10rem",borderRadius:"50%",border:"1px solid seagreen",objectFit:"cover",marginLeft:"auto",marginRight:"auto"}} src={x.image} className="card-img-top" alt=""/>
     <div className="card-body">
