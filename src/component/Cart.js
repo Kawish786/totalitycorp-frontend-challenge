@@ -3,7 +3,9 @@ import { Plus, Minus, Trash, CopyX } from "lucide-react";
 import { NavLink, useParams } from "react-router-dom";
 
 
+
 function Cart() {
+  
   const { cartId } = useParams();
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(1);
@@ -26,6 +28,7 @@ function Cart() {
       setSubTotalPrice(newSubTotalPrice);
     }
   }, [product, count]);
+  
   //delete query
   const deleteData=(id)=>{
     const newProduct=(e)=>{return e.cartId !== id}

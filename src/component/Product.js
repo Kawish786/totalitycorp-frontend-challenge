@@ -79,7 +79,7 @@ function Product() {
     <div className="card" key={x.id} style={{width:"19rem" , margin:"1rem",backgroundColor:"transparent",border:"1px solid seagreen"}}>
     <img style={{width:"10rem",height:"10rem",borderRadius:"50%",border:"1px solid seagreen",objectFit:"cover",marginLeft:"auto",marginRight:"auto"}} src={x.image} className="card-img-top" alt=""/>
     <div className="card-body">
-      <h5 className="card-title text-success">{x.title}</h5>
+      <h5 className="card-title" style={{color:"grey"}}>{x.title}</h5>
       <p className="card-text text-success">$ {x.price}</p>
       <Link to={`/single/${x.id}`}><label className="btn btn-light">Check Product</label></Link>
       {/* ABove replace spaces into dash in the url

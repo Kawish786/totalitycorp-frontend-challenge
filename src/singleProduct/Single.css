@@ -4,8 +4,9 @@
     grid-template-columns: repeat(2,1fr);
     grid-gap:50px 30px ;
     place-items: center;
-    /* background-color: black; */
+    background-color: black;
     margin-top: 2px;
+    height: 90vh;
 }
 .about .div1{
     overflow: hidden;
@@ -18,7 +19,7 @@
     
 }
 .div2{
-    background-color: burlywood;
+    background-color: transparent;
 }
 .about.div2{
     display: flex;
